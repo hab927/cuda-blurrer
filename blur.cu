@@ -139,13 +139,6 @@ __global__ void gaussian_blur(int start_index, int matrix_size, double* gaussian
 	int radius = (matrix_size - 1) / 2;
 	int m_length = matrix_size * matrix_size;
 
-	// new bound technology!
-	// the non-testing bounds are the true bounds of the image
-	// however, the program will use the testing bounds to "check", and allow for overflow
-	// if the given dimension is outside any of the bounds, it will just continue the loop
-	// that way, it is effectively adding 0 to all of the channels as if it was a blank pixel
-	// this gives the fuzzy edges characteristic in gaussian blur
-
 	for (int channel = 0; channel < c; channel++) {
 		double sum = 0;
 		for (int y = -radius; y <= radius; y++) {
